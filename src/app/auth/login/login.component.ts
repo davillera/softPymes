@@ -15,6 +15,7 @@ export class LoginComponent {
   public formLogin: any
 
   constructor(
+    private router: Router,
     private formBuilder: FormBuilder,
     private aFAuth: AngularFireAuth,
   ) { }
@@ -23,8 +24,8 @@ export class LoginComponent {
     sessionStorage.clear
 
     this.formLogin = this.formBuilder.group({
-      email: ['davillera@softpymes.com', [Validators.required, Validators.email]],
-      password: ['xk221ac4', [Validators.required, Validators.minLength(8)]]
+      email: ['', [Validators.required, Validators.email]],
+      password: ['', [Validators.required, Validators.minLength(8)]]
     })
   }
 
@@ -33,7 +34,7 @@ export class LoginComponent {
     const password = this.formLogin.value.password
 
     this.aFAuth.signInWithEmailAndPassword(email, password).then((user) => {
-      console.log('con exito mi rey');
+      this.router.navigate(['/home'])
     }).catch(() => {
       Swal.fire({
         icon: 'error',

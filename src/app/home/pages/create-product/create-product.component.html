@@ -1,0 +1,48 @@
+<app-header></app-header>
+<section
+  class="d-flex align-items-center justify-content-center"
+  style="height: 100vh"
+>
+  <form [formGroup]="formAddProduct">
+    <h5>Añade Un Nuevo Producto</h5>
+    <div class="form-group">
+      <label >Nombre</label>
+      <input type="text" class="form-control" formControlName="name" />
+      <label >Descripción</label>
+      <input type="text" class="form-control" formControlName="description" />
+      <label >Color</label>
+      <input type="text" class="form-control" formControlName="color" />
+      <label >Precio</label>
+      <input
+        min="0"
+        type="number"
+        class="form-control"
+        formControlName="price"
+      />
+      <label >Tamaño del Marco</label>
+      <input
+        min="0"
+        type="number"
+        class="form-control"
+        formControlName="size"
+      />
+      <label >Inventario</label>
+      <input
+        min="0"
+        type="number"
+        class="form-control"
+        formControlName="stock"
+      />
+      <div class="d-flex justify-content-between">
+        <button class="btn btn-danger btn-block my-2" (click)="formAddProduct.reset()">Limpiar</button>
+        <button
+          class="btn btn-primary btn-block my-2"
+          (click)="addProduct()"
+          [disabled]="formAddProduct.invalid"
+        >
+          Agregar Producto
+        </button>
+      </div>
+    </div>
+  </form>
+</section>

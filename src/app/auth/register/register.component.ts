@@ -16,7 +16,7 @@ export class RegisterComponent {
   constructor(
     private aFAuth: AngularFireAuth,
     private router: Router,
-    private formBuilder: FormBuilder,
+    private formBuilder: FormBuilder
   ) { }
 
 

@@ -1,7 +1,4 @@
 import { Component } from '@angular/core';
-import { AngularFireAuth } from '@angular/fire/compat/auth';
-import { Firestore, collection, addDoc, collectionData, doc, deleteDoc, CollectionReference } from '@angular/fire/firestore';
-import { Router } from '@angular/router';
 import Product from 'src/app/interface/products.interface';
 import { ProductsService } from 'src/app/services/products.service';
 import Swal from 'sweetalert2';
@@ -16,8 +13,7 @@ export class InventoryComponent {
 
   constructor(
     private productService: ProductsService,
-    private aFAuth: AngularFireAuth,
-    private router: Router
+
   ) { }
 
   ngOnInit() {
@@ -25,8 +21,30 @@ export class InventoryComponent {
       this.products = pro
     })
   }
-  updateProduct(p: Product){
-
+  updateProduct(p: any) {
+    Swal.fire({
+      title: 'Quieres Actualizar este Producto?',
+      showDenyButton: false,
+      showCancelButton: true,
+      confirmButtonText: 'Actualizar',
+      denyButtonText: `Don't save`,
+    }).then((result) => {
+      if (result.isConfirmed) {
+        const newProduct: Product = {
+          name: p.name,
+          description: p.description,
+          price: p.price,
+          stock: p.stock
+        }
+        console.log(newProduct);
+        this.productService.updateProduct(p, newProduct).then(() => {
+          Swal.fire('Actualizaste Este Producto!', '', 'success')
+        }).catch((error) => {
+          console.log(error);
+          Swal.fire('Ooops..!', '', 'error')
+        })
+      }
+    })
   }
 
   deteleProduct(p: Product) {
@@ -37,15 +55,13 @@ export class InventoryComponent {
       confirmButtonText: 'Borrar',
       denyButtonText: `Don't save`,
     }).then((result) => {
-      /* Read more about isConfirmed, isDenied below */
       if (result.isConfirmed) {
         this.productService.deteleProduct(p).then(() => {
           Swal.fire('Borrado!', '', 'success')
-        }).catch((error) =>{
+        }).catch((error) => {
           console.log(error);
-
+          Swal.fire('Ooops..!', '', 'error')
         })
-
       }
     })
   }

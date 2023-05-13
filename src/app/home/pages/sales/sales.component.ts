@@ -46,7 +46,6 @@ export class SalesComponent {
         icon: 'error',
         title: 'Oops...',
         text: `No hay suficiente stock disponible para ${selectedProduct.name}`,
-        footer: '<a href="">Why do I have this issue?</a>'
       })
       return
     }

@@ -6,25 +6,18 @@
   <form [formGroup]="formAddProduct">
     <h5>Añade Un Nuevo Producto</h5>
     <div class="form-group">
+      <label >Id</label>
+      <input type="number" class="form-control" formControlName="ID" />
       <label >Nombre</label>
       <input type="text" class="form-control" formControlName="name" />
       <label >Descripción</label>
-      <input type="text" class="form-control" formControlName="description" />
-      <label >Color</label>
-      <input type="text" class="form-control" formControlName="color" />
+      <input type="textarea" class="form-control" formControlName="description" />
       <label >Precio</label>
       <input
         min="0"
         type="number"
         class="form-control"
         formControlName="price"
-      />
-      <label >Tamaño del Marco</label>
-      <input
-        min="0"
-        type="number"
-        class="form-control"
-        formControlName="size"
       />
       <label >Inventario</label>
       <input

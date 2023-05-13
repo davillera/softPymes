@@ -22,11 +22,10 @@ export class CreateProductComponent {
     sessionStorage.clear
 
     this.formAddProduct = this.formBuilder.group({
+      ID: ['', [Validators.required]],
       name: ['', [Validators.required]],
       description: ['', [Validators.required]],
-      color: ['', [Validators.required]],
       price: ['', [Validators.required]],
-      size: ['', [Validators.required]],
       stock: ['', [Validators.required]],
 
     })

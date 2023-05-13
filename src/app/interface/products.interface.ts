@@ -1,8 +1,7 @@
 export default interface Product{
-  id?: string,
-  color: string,
+  id: number,
+  name: string
   description: string,
   price: number,
-  size: number,
   stock: number
 }

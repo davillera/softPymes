@@ -1,9 +1,8 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { FormBuilder, Validators } from '@angular/forms';
-import { AngularFireAuth } from '@angular/fire/compat/auth'
 import Swal from 'sweetalert2';
-
+import { LoginService } from 'src/app/services/login.service'
 
 @Component({
   selector: 'app-login',
@@ -17,7 +16,7 @@ export class LoginComponent {
   constructor(
     private router: Router,
     private formBuilder: FormBuilder,
-    private aFAuth: AngularFireAuth,
+    private loginService: LoginService,
   ) { }
 
   ngOnInit(): void {
@@ -33,7 +32,7 @@ export class LoginComponent {
     const email = this.formLogin.value.email
     const password = this.formLogin.value.password
 
-    this.aFAuth.signInWithEmailAndPassword(email, password).then((user) => {
+    this.loginService.login({ email, password }).then(() => {
       this.router.navigate(['/home'])
     }).catch(() => {
       Swal.fire({
@@ -43,6 +42,4 @@ export class LoginComponent {
       })
     })
   }
-
-
 }

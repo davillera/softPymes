@@ -1,0 +1,16 @@
+import { Injectable } from '@angular/core';
+import { AngularFireAuth } from '@angular/fire/compat/auth';
+
+@Injectable({
+  providedIn: 'root'
+})
+export class LoginService {
+
+  constructor(
+    private afAuth: AngularFireAuth
+    ) { }
+
+  login(credentials: { email: string, password: string }): Promise<any> {
+    return this.afAuth.signInWithEmailAndPassword(credentials.email, credentials.password);
+  }
+}

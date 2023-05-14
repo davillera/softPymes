@@ -1,8 +1,8 @@
 import { Component } from '@angular/core';
-import { AngularFireAuth } from '@angular/fire/compat/auth';
-import { FormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { FormBuilder, Validators } from '@angular/forms';
 import Swal from 'sweetalert2';
+import { LoginService } from 'src/app/services/login.service';
 
 @Component({
   selector: 'app-register',
@@ -14,9 +14,9 @@ export class RegisterComponent {
   public formRegister: any
 
   constructor(
-    private aFAuth: AngularFireAuth,
     private router: Router,
-    private formBuilder: FormBuilder
+    private formBuilder: FormBuilder,
+    private loginService: LoginService
   ) { }
 
 
@@ -30,36 +30,33 @@ export class RegisterComponent {
     })
   }
 
-  Validate(){
+  Validate() {
     const password1 = this.formRegister.value.password1
     const password2 = this.formRegister.value.password2
 
-    if(password1 === password2){
-      Swal.fire({
-        icon: 'success',
-        title: 'Creaste un nuevo usuario',
-        text: 'Ya puedes ingresar a la aplicación',
-      })
-      this.router.navigate(['/auth/login'])
-      this.Register()
-    }else{
+    if (password1 === password2) {
+      this.loginService.register(this.formRegister.value.email, this.formRegister.value.password2)
+        .then(() => {
+          Swal.fire({
+            icon: 'success',
+            title: 'Creaste un nuevo usuario',
+            text: 'Ya puedes ingresar a la aplicación',
+          });
+          this.router.navigate(['/auth/login']);
+        })
+        .catch((error) => {
+          Swal.fire({
+            icon: 'error',
+            title: 'Oops...',
+            text: error.message,
+          });
+        });
+    } else {
       Swal.fire({
         icon: 'error',
         title: 'Oops...',
         text: 'Las contraseñas no coinciden',
       })
     }
-  }
-
-  Register(){
-    const email = this.formRegister.value.email
-    const password = this.formRegister.value.password2
-
-    this.aFAuth.createUserWithEmailAndPassword(email, password).then((user) =>{
-
-    }).catch((error)=>{
-      console.log(error);
-
-    })
   }
 }

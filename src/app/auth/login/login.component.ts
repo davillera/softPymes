@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
-import { FormBuilder, Validators } from '@angular/forms';
+import { FormBuilder, Validators, FormGroup } from '@angular/forms';
 import Swal from 'sweetalert2';
 import { LoginService } from 'src/app/services/login.service'
 
@@ -11,7 +11,7 @@ import { LoginService } from 'src/app/services/login.service'
 })
 export class LoginComponent {
 
-  public formLogin: any
+  public formLogin!: FormGroup;
 
   constructor(
     private router: Router,
@@ -32,7 +32,7 @@ export class LoginComponent {
     const email = this.formLogin.value.email
     const password = this.formLogin.value.password
 
-    this.loginService.login({ email, password }).then(() => {
+    this.loginService.login( email, password ).then(() => {
       this.router.navigate(['/home'])
     }).catch(() => {
       Swal.fire({

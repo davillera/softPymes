@@ -3,7 +3,9 @@ import { RouterModule, Routes } from '@angular/router';
 import { CreateProductComponent } from './pages/create-product/create-product.component';
 import { InventoryComponent } from './pages/inventory/inventory.component';
 import { SalesComponent } from './pages/sales/sales.component';
-import { AngularFireAuthGuard } from '@angular/fire/compat/auth-guard'
+import { AngularFireAuthGuard, redirectUnauthorizedTo } from '@angular/fire/compat/auth-guard'
+
+const redirectUnauthorizedToLogin = () => redirectUnauthorizedTo(['/auth/login']);
 
 const routes: Routes = [
   {
@@ -12,17 +14,20 @@ const routes: Routes = [
       {
         path: 'create',
         component: CreateProductComponent,
-        canActivate: [AngularFireAuthGuard]
+        canActivate: [AngularFireAuthGuard],
+        data: { authGuardPipe: redirectUnauthorizedToLogin }
       },
       {
         path: 'inventory',
         component: InventoryComponent,
-        canActivate: [AngularFireAuthGuard]
+        canActivate: [AngularFireAuthGuard],
+        data: { authGuardPipe: redirectUnauthorizedToLogin }
       },
       {
         path: 'sales',
         component: SalesComponent,
-        canActivate: [AngularFireAuthGuard]
+        canActivate: [AngularFireAuthGuard],
+        data: { authGuardPipe: redirectUnauthorizedToLogin }
       },
       {
         path: '**',

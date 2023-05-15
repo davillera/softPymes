@@ -27,7 +27,7 @@ Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To u
 To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
 
 ## Proyecto
-Este proyecto está desplegado en [deploy](https://soft-pymes.vercel.app/) desde desde vercel, usando programación modular, hay 2 modulos, 1 modulo para la Autenticación y otro para el home, en el home hay 3 pages, createProduct, Invetory y sales, y un componente header que se renderiza en cada page. Además se aplicó Lazy Loading para mejorar el rendimiento de aplicación y que sea más escalable la aplicación
+Este proyecto está desplegado en [deploy](https://soft-pymes.vercel.app/) desde desde vercel, usando programación modular, hay 2 modulos, 1 modulo para la Autenticación y otro para el home, en el home hay 3 pages, createProduct, Invetory y sales, y un componente header que se renderiza en cada page. Además se aplicó Lazy Loading para mejorar el rendimiento de aplicación y que sea más escalable la aplicación. En la documentación de Firebase pude encontrar cosas interesantes para mejorar la experiencia de desarrollo de esta aplicación, una de estas fue los guards que ya tenía preconfigurado para proteger las rutas de personas no autorizadas.
 
 ## Tecnologías
 Para este proyecto utlicé las siguentes Tecnologías

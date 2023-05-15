@@ -20,7 +20,7 @@ export class LoginComponent {
   ) { }
 
   ngOnInit(): void {
-    sessionStorage.clear
+    this.loginService.logout()
 
     this.formLogin = this.formBuilder.group({
       email: ['', [Validators.required, Validators.email]],

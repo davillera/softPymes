@@ -80,8 +80,10 @@ export class SalesComponent {
           title: 'Excelente',
           text: 'Hiciste Una Compra'
         })
-        this.checkStock()
         this.cancel()
+        setTimeout(() => {
+          this.checkStock()
+        }, 1500);
       })
       .catch(error => console.log('Error al actualizar los productos:', error));
   }

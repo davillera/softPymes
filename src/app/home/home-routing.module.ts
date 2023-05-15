@@ -3,22 +3,26 @@ import { RouterModule, Routes } from '@angular/router';
 import { CreateProductComponent } from './pages/create-product/create-product.component';
 import { InventoryComponent } from './pages/inventory/inventory.component';
 import { SalesComponent } from './pages/sales/sales.component';
+import { AngularFireAuthGuard } from '@angular/fire/compat/auth-guard'
 
 const routes: Routes = [
   {
     path: '',
-    children:[
+    children: [
       {
         path: 'create',
-        component: CreateProductComponent
+        component: CreateProductComponent,
+        canActivate: [AngularFireAuthGuard]
       },
       {
         path: 'inventory',
-        component: InventoryComponent
+        component: InventoryComponent,
+        canActivate: [AngularFireAuthGuard]
       },
       {
         path: 'sales',
-        component: SalesComponent
+        component: SalesComponent,
+        canActivate: [AngularFireAuthGuard]
       },
       {
         path: '**',

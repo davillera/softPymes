@@ -12,11 +12,12 @@ import { SalesComponent } from './pages/sales/sales.component';
 import { CreateProductComponent } from './pages/create-product/create-product.component';
 import { ProductsService } from '../services/products.service';
 
-import { DatabaseModule } from '@angular/fire/database'
+
 import { AngularFireModule } from '@angular/fire/compat'
 import { environment } from 'src/env/environment';
-import { provideFirestore, getFirestore, FirestoreModule } from '@angular/fire/firestore';
+import { provideFirestore, getFirestore } from '@angular/fire/firestore';
 import { initializeApp, provideFirebaseApp } from '@angular/fire/app';
+import { LoginService } from '../services/login.service';
 
 
 @NgModule({
@@ -35,10 +36,10 @@ import { initializeApp, provideFirebaseApp } from '@angular/fire/app';
     ReactiveFormsModule,
     provideFirebaseApp(() => initializeApp(environment.firebaseConfig)),
     provideFirestore(() => getFirestore()),
-    DatabaseModule,
   ],
   providers: [
-    ProductsService
+    ProductsService,
+    LoginService
   ]
 
 })

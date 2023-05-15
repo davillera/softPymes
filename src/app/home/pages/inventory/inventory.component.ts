@@ -1,7 +1,9 @@
 import { Component } from '@angular/core';
 import Product from 'src/app/interface/products.interface';
+import { LoginService } from 'src/app/services/login.service';
 import { ProductsService } from 'src/app/services/products.service';
 import Swal from 'sweetalert2';
+import { Router } from '@angular/router';
 @Component({
   selector: 'app-inventory',
   templateUrl: './inventory.component.html',
@@ -12,8 +14,9 @@ export class InventoryComponent {
   products: any
 
   constructor(
+    private router: Router,
+    private loginService: LoginService,
     private productService: ProductsService,
-
   ) { }
 
   ngOnInit() {

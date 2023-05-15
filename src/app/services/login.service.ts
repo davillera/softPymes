@@ -22,5 +22,4 @@ export class LoginService {
     return this.aFAuth.signOut();
   }
 
-
 }

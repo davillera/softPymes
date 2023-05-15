@@ -16,6 +16,7 @@ export class SalesComponent {
   public productsSelected: any[] = []
   public amount: number = 0
   public total: number = 0;
+  public discount: number = 0
   constructor(
     private productService: ProductsService,
     private formBuilder: FormBuilder
@@ -27,6 +28,7 @@ export class SalesComponent {
       name: ['', [Validators.required]],
       product: ['', [Validators.required]],
       amount: ['', [Validators.required]],
+      discount: ['0', [Validators.required]]
     })
 
     this.productService.getProduct().subscribe(products => {
@@ -62,7 +64,6 @@ export class SalesComponent {
 
 
   sale() {
-    // Actualizar el stock de los productos seleccionados
     const productsToUpdate = this.productsSelected.map(p => {
       return {
         id: p.product.id,
@@ -80,7 +81,7 @@ export class SalesComponent {
           text: 'Hiciste Una Compra'
         })
         this.checkStock()
-        this.cancel
+        this.cancel()
       })
       .catch(error => console.log('Error al actualizar los productos:', error));
   }
@@ -105,6 +106,5 @@ export class SalesComponent {
     this.productsSelected = [];
     this.total = 0;
   }
-
 
 }

@@ -19,7 +19,6 @@ import { provideFirestore, getFirestore } from '@angular/fire/firestore';
 import { initializeApp, provideFirebaseApp } from '@angular/fire/app';
 import { LoginService } from '../services/login.service';
 
-
 @NgModule({
   declarations: [
     InventoryComponent,
@@ -36,6 +35,7 @@ import { LoginService } from '../services/login.service';
     ReactiveFormsModule,
     provideFirebaseApp(() => initializeApp(environment.firebaseConfig)),
     provideFirestore(() => getFirestore()),
+
   ],
   providers: [
     ProductsService,

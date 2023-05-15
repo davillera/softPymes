@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
-import { FormBuilder, Validators } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+
 import { ProductsService } from 'src/app/services/products.service';
 import Swal from 'sweetalert2';
 
@@ -10,7 +11,7 @@ import Swal from 'sweetalert2';
 })
 export class CreateProductComponent {
 
-  public formAddProduct: any
+  public formAddProduct!: FormGroup
 
   constructor(
     private productService: ProductsService,

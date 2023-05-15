@@ -1,51 +1,50 @@
 <app-header></app-header>
+
 <section
-  class="d-flex align-items-center justify-content-center"
-  style="height: 100vh"
+  class="d-flex align-items-center justify-content-center bg-light vh-100"
 >
   <form [formGroup]="formAddProduct">
     <h5>Añade Un Nuevo Producto</h5>
     <div class="form-group">
-      <label for="ID">Id</label>
-      <input type="number" class="form-control form-control-lg" formControlName="ID" id="ID" />
-    </div>
-    <div class="form-group">
-      <label for="name">Nombre</label>
-      <input type="text" class="form-control form-control-lg" formControlName="name" id="name" />
-    </div>
-    <div class="form-group">
-      <label for="description">Descripción</label>
-      <input type="textarea" class="form-control form-control-lg" formControlName="description" id="description" />
-    </div>
-    <div class="form-group">
-      <label for="price">Precio</label>
+      <label>Id</label>
+      <input type="number" class="form-control" formControlName="ID" />
+      <label>Nombre</label>
+      <input type="text" class="form-control" formControlName="name" />
+      <label>Descripción</label>
+      <input
+        type="textarea"
+        class="form-control"
+        formControlName="description"
+      />
+      <label>Precio</label>
       <input
         min="0"
         type="number"
-        class="form-control form-control-lg"
+        class="form-control"
         formControlName="price"
-        id="price"
       />
-    </div>
-    <div class="form-group">
-      <label for="stock">Inventario</label>
+      <label>Inventario</label>
       <input
         min="0"
         type="number"
-        class="form-control form-control-lg"
+        class="form-control"
         formControlName="stock"
-        id="stock"
       />
-    </div>
-    <div class="d-flex justify-content-between">
-      <button class="btn btn-danger btn-block my-2" (click)="formAddProduct.reset()">Limpiar</button>
-      <button
-        class="btn btn-primary btn-block my-2"
-        (click)="addProduct()"
-        [disabled]="formAddProduct.invalid"
-      >
-        Agregar Producto
-      </button>
+      <div class="d-flex justify-content-between">
+        <button
+          class="btn btn-danger btn-block my-2"
+          (click)="formAddProduct.reset()"
+        >
+          Limpiar
+        </button>
+        <button
+          class="btn btn-primary btn-block my-2"
+          (click)="addProduct()"
+          [disabled]="formAddProduct.invalid"
+        >
+          Agregar Producto
+        </button>
+      </div>
     </div>
   </form>
 </section>
